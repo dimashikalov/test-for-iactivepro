@@ -2,7 +2,7 @@ import { NewsItem } from "./components/newsItem/NewsItem";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <NewsItem />
     </div>
   );

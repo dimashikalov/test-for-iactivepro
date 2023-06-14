@@ -36,17 +36,20 @@
 }
 
 .textContent {
+  width: 100%;
+  padding: 10px;
 }
 
 .textContentHeader {
+  display: flex;
+  justify-content: space-between;
 }
-.author h6 {
+.author {
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 13px;
-  /* identical to box height, or 83% */
 
   color: #808080;
 }
@@ -57,7 +60,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0px;
-  gap: 8dpx;
+  gap: 8px;
   width: 108px;
   height: 24px;
 }
@@ -68,6 +71,7 @@
   background-image: url("./../../static/icons/workIcons/arrow.png");
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .hide {
   width: 20px;
@@ -75,6 +79,7 @@
   background-image: url("./../../static/icons/workIcons/hideMessage.png");
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .setting {
   width: 20px;
@@ -82,6 +87,7 @@
   background-image: url("./../../static/icons/workIcons/setting.png");
   background-position: inherit;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .favorites {
   width: 20px;
@@ -89,11 +95,27 @@
   background-image: url("./../../static/icons/workIcons/favorites.png");
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .content {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.link {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+  color: #808080;
+  text-decoration: none;
+}
+
+.mediaContent {
+  width: 259px;
+  height: 146px;
+  border-radius: 4px;
 }
