@@ -1,5 +1,11 @@
+import { NewsItem } from "./components/newsItem/NewsItem";
+
 function App() {
-  return <div className="App">hello</div>;
+  return (
+    <div>
+      <NewsItem />
+    </div>
+  );
 }
 
 export default App;
