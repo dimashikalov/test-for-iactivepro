@@ -1,21 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./newsItem.css";
 
 import defaultImage from "./../../static/images/defaultImage.png";
 
 const testItem = {
-  author: "Хорошие новости",
-  content:
-    "Кубанские токари давно научились изготавливать то, что все привыкли ждать из-за границы. Небольшой токарный цех выполняет заказы по замене деталей на импортной технике — что не только дешевле, но и быстрее в производстве⚙️",
+  author: "Канал ПЕРВЫЙ",
+  content: "Пост пост",
   channel: "telegrambot",
-  id: "2682",
-  date: "2022-04-03 20:51:03",
-  attachments: [
-    {
-      type: "video",
-      url: "https://media.iactive.pro/ZLmYglhqeDD/messages_videos/telegram/hnCxaYpiDAVI4Pdb6CLB7sTbE8E0P5tb.mp4",
-    },
-  ],
+  id: "2679",
+  date: "2022-04-01 13:17:26",
+  attachments: [],
   senderNumber: "1001692672105",
   region: "",
 };
@@ -33,19 +27,21 @@ const VideoItem = ({ url }) => {
 
 export const NewsItem = () => {
   const date = new Date(testItem.date);
-  let typeFile = useRef("image");
-  let showFile;
+  let [typeFile, setTypeFile] = useState("");
   const file = testItem.attachments;
 
   useEffect(() => {
-    // mediaFile();
-    console.log("file ", file);
-
-    if (file[0].type === "video") {
-      console.log("video ", file[0].url);
-      typeFile = "video";
+    if (file.length) {
+      if (file[0].type === "video") {
+        setTypeFile("video");
+      } else {
+        setTypeFile("image");
+      }
+    } else {
+      setTypeFile("image");
     }
-    console.log("typeFile", typeFile);
+
+    console.log("type", typeFile);
   }, []);
 
   return (
@@ -77,15 +73,13 @@ export const NewsItem = () => {
             </a>
           </div>
           <div className="mediaContent">
-            {typeFile === "image" ? (
-              file[0] ? (
+            {typeFile === "image" &&
+              (file[0] ? (
                 <ImageItem url={file[0].url} />
               ) : (
                 <ImageItem url={defaultImage} />
-              )
-            ) : (
-              <VideoItem url={file[0].url} />
-            )}
+              ))}
+            {typeFile === "video" && <VideoItem url={file[0].url} />}
           </div>
         </div>
       </div>

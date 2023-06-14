@@ -117,5 +117,9 @@
 .mediaContent {
   width: 259px;
   height: 146px;
+  margin-top: 8px;
+}
+
+.mediaContent video {
   border-radius: 4px;
 }
