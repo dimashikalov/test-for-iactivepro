@@ -5,3 +5,95 @@
   background: #ffffff;
   border-radius: 1px;
 }
+
+.container {
+  display: flex;
+}
+
+.leftInfo {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-image: url("./../../static/icons/avatar/Ellipse.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.createTime {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 9px;
+  text-align: center;
+  color: #808080;
+}
+
+.textContent {
+}
+
+.textContentHeader {
+}
+.author h6 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 13px;
+  /* identical to box height, or 83% */
+
+  color: #808080;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8dpx;
+  width: 108px;
+  height: 24px;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  background-image: url("./../../static/icons/workIcons/arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hide {
+  width: 20px;
+  height: 20px;
+  background-image: url("./../../static/icons/workIcons/hideMessage.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.setting {
+  width: 20px;
+  height: 20px;
+  background-image: url("./../../static/icons/workIcons/setting.png");
+  background-position: inherit;
+  background-repeat: no-repeat;
+}
+.favorites {
+  width: 20px;
+  height: 20px;
+  background-image: url("./../../static/icons/workIcons/favorites.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
