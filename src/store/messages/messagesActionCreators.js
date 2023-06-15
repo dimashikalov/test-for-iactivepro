@@ -20,7 +20,11 @@ export const fetchAllMessage = () => async (dispatch) => {
       withCredentials: false,
     });
 
-    dispatch(messagesFetchingSuccess(responce.data.Messages));
+    const messages = responce.data.Messages.reduce((acc, el) => {
+      acc[el.id] = el;
+      return acc;
+    }, {});
+    dispatch(messagesFetchingSuccess(messages));
   } catch (error) {
     dispatch(messagesFetchingError(error));
   }

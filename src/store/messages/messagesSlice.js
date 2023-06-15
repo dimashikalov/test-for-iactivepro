@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  messages: [],
+  messages: {},
   isLoading: false,
   error: "",
 };
@@ -27,8 +27,13 @@ const messagesSlice = createSlice({
     },
 
     messageNewFetchingSuccess(state, action) {
-      state.messages = [...state.messages, ...action.payload];
-      console.log("state 111", state.messages);
+      let actionArray = action.payload;
+      for (let item of actionArray) {
+        state.messages = {
+          ...state.messages,
+          [item.id]: item,
+        };
+      }
     },
   },
 });
