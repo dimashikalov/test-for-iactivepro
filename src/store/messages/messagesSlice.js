@@ -25,6 +25,11 @@ const messagesSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    messageNewFetchingSuccess(state, action) {
+      state.messages = [...state.messages, ...action.payload];
+      console.log("state 111", state.messages);
+    },
   },
 });
 
@@ -32,6 +37,7 @@ export const {
   messagesFetching,
   messagesFetchingError,
   messagesFetchingSuccess,
+  messageNewFetchingSuccess,
 } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

@@ -33,7 +33,9 @@ export const NewsItem = ({ message }) => {
 
         <div className="textContent">
           <div className="textContentHeader">
-            <div className="author">{message.author}</div>
+            <div className="author">
+              {message.author} {message.id}
+            </div>
             <div className="icons">
               <div className="arrow" />
               <div className="hide" />
