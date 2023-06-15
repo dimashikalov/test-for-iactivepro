@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./newsItem.css";
-
+import { VideoItem } from "./VideoItem";
+import { ImageItem } from "./ImageItem";
 import defaultImage from "./../../static/images/defaultImage.png";
 
 const testItem = {
@@ -12,17 +13,6 @@ const testItem = {
   attachments: [],
   senderNumber: "1001692672105",
   region: "",
-};
-
-const ImageItem = ({ url }) => {
-  return <img style={{ width: "100%", height: "100%" }} src={url} alt="img" />;
-};
-const VideoItem = ({ url }) => {
-  return (
-    <video style={{ width: "100%", height: "100%" }} controls>
-      <source src={url} type="video/mp4" />
-    </video>
-  );
 };
 
 export const NewsItem = () => {
@@ -40,8 +30,6 @@ export const NewsItem = () => {
     } else {
       setTypeFile("image");
     }
-
-    console.log("type", typeFile);
   }, []);
 
   return (
