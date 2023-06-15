@@ -4,21 +4,10 @@ import { VideoItem } from "./VideoItem";
 import { ImageItem } from "./ImageItem";
 import defaultImage from "./../../static/images/defaultImage.png";
 
-const testItem = {
-  author: "Канал ПЕРВЫЙ",
-  content: "Пост пост",
-  channel: "telegrambot",
-  id: "2679",
-  date: "2022-04-01 13:17:26",
-  attachments: [],
-  senderNumber: "1001692672105",
-  region: "",
-};
-
-export const NewsItem = () => {
-  const date = new Date(testItem.date);
+export const NewsItem = ({ message }) => {
+  const date = new Date(message.date);
   let [typeFile, setTypeFile] = useState("");
-  const file = testItem.attachments;
+  const file = message.attachments;
 
   useEffect(() => {
     if (file.length) {
@@ -44,7 +33,7 @@ export const NewsItem = () => {
 
         <div className="textContent">
           <div className="textContentHeader">
-            <div className="author">{testItem.author}</div>
+            <div className="author">{message.author}</div>
             <div className="icons">
               <div className="arrow" />
               <div className="hide" />
@@ -53,7 +42,7 @@ export const NewsItem = () => {
             </div>
           </div>
           <div className="content">
-            <p>{testItem.content}</p>
+            <p>{message.content}</p>
           </div>
           <div>
             <a href="#" className="link">
