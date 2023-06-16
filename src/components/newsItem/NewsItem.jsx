@@ -21,13 +21,20 @@ export const NewsItem = ({ message }) => {
     }
   }, []);
 
+  function addZero(num) {
+    if (num >= 0 && num <= 9) {
+      return "0" + num;
+    } else {
+      return num;
+    }
+  }
   return (
     <div className="wrapper">
       <div className="container">
         <div className="leftInfo">
           <div className="avatar" />
           <div className="createTime">
-            {date.getHours()} : {date.getMinutes()}
+            {addZero(date.getHours())} : {addZero(date.getMinutes())}
           </div>
         </div>
 
