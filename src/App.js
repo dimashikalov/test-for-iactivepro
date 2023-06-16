@@ -12,12 +12,9 @@ function App() {
   const { messages, isLoading, error } = useSelector((state) => state.messages);
   const [selectSort, setSelectSort] = useState("sortDown");
   const favorites = JSON.parse(localStorage.getItem("messages"));
-  console.log("fav", favorites);
 
   const messageTimeout = () => {
     let lastItem = Object.keys(messages)[Object.keys(messages).length - 1];
-    console.log("last", lastItem);
-    console.log("messageArray", messages);
     if (lastItem) {
       dispatch(fetchNewMessage(lastItem));
     }
@@ -27,13 +24,13 @@ function App() {
     dispatch(fetchAllMessage());
   }, []);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     messageTimeout();
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      messageTimeout();
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [messages]);
+    return () => clearInterval(interval);
+  }, [messages]);
 
   const [sortArray, setSortArray] = useState([]);
 
