@@ -8,6 +8,7 @@ export const NewsItem = ({ message }) => {
   const date = new Date(message.date);
   let [typeFile, setTypeFile] = useState("");
   const file = message.attachments;
+  const like = false;
 
   useEffect(() => {
     if (file.length) {
@@ -28,6 +29,11 @@ export const NewsItem = ({ message }) => {
       return num;
     }
   }
+
+  const handleFavoritesClick = () => {
+    console.log("clixk");
+  };
+
   return (
     <div className="wrapper">
       <div className="container">
@@ -47,7 +53,10 @@ export const NewsItem = ({ message }) => {
               <div className="arrow" />
               <div className="hide" />
               <div className="setting" />
-              <div className="favorites" />
+              <div
+                className={like ? "favorites like" : "favorites"}
+                onClick={handleFavoritesClick}
+              />
             </div>
           </div>
           <div className="content">

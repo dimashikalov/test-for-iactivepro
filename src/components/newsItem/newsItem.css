@@ -92,10 +92,14 @@
 .favorites {
   width: 20px;
   height: 20px;
-  background-image: url("./../../static/icons/workIcons/favorites.png");
+  background-image: url("./../../static/icons/workIcons/icons8-star-16.png");
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+.like {
+  background-image: url("./../../static/icons/workIcons/favorites.png");
 }
 
 .content {
