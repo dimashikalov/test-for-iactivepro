@@ -25,24 +25,22 @@ function App() {
     dispatch(fetchAllMessage());
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      messageTimeout();
-    }, 5000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     messageTimeout();
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, [messages]);
+  //   return () => clearInterval(interval);
+  // }, [messages]);
 
   const [sortArray, setSortArray] = useState([]);
 
   const handleSortArray = (type, messages) => {
     if (type === "sortUp") {
       setSortArray(Object.values(messages).toReversed());
-      console.log("sort1 ", sortArray);
     }
     if (type === "sortDown") {
       setSortArray(Object.values(messages));
-      console.log("sort1222 ", sortArray);
     }
   };
 

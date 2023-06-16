@@ -3,12 +3,16 @@ import "./newsItem.css";
 import { VideoItem } from "./VideoItem";
 import { ImageItem } from "./ImageItem";
 import defaultImage from "./../../static/images/defaultImage.png";
+import { useDispatch } from "react-redux";
+import { messageToggleLike } from "../../store/messages/messagesSlice";
 
 export const NewsItem = ({ message }) => {
   const date = new Date(message.date);
   let [typeFile, setTypeFile] = useState("");
   const file = message.attachments;
   const like = false;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (file.length) {
@@ -31,7 +35,8 @@ export const NewsItem = ({ message }) => {
   }
 
   const handleFavoritesClick = () => {
-    console.log("clixk");
+    const changeMessage = { ...message, like: !message.like };
+    dispatch(messageToggleLike(changeMessage));
   };
 
   return (
@@ -54,7 +59,7 @@ export const NewsItem = ({ message }) => {
               <div className="hide" />
               <div className="setting" />
               <div
-                className={like ? "favorites like" : "favorites"}
+                className={message.like ? "favorites like" : "favorites"}
                 onClick={handleFavoritesClick}
               />
             </div>
