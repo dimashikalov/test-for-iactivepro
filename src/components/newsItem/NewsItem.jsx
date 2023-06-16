@@ -10,7 +10,6 @@ export const NewsItem = ({ message }) => {
   const date = new Date(message.date);
   let [typeFile, setTypeFile] = useState("");
   const file = message.attachments;
-  const like = false;
 
   const dispatch = useDispatch();
 
@@ -37,7 +36,25 @@ export const NewsItem = ({ message }) => {
   const handleFavoritesClick = () => {
     const changeMessage = { ...message, like: !message.like };
     dispatch(messageToggleLike(changeMessage));
+    let ls = JSON.parse(localStorage.getItem("messages") || "[]");
+    if (ls.find((item) => item.id === changeMessage.id)) {
+      ls = ls.filter((item) => item.id !== changeMessage.id);
+    } else {
+      ls.push(changeMessage);
+    }
+
+    localStorage.setItem("messages", JSON.stringify(ls));
   };
+
+  useEffect(() => {
+    let ls = JSON.parse(localStorage.getItem("messages"));
+    if (ls.length > 0) {
+      if (ls.find((item) => item.id === message.id)) {
+        let changeMessage = { ...message, like: true };
+        dispatch(messageToggleLike(changeMessage));
+      }
+    }
+  }, []);
 
   return (
     <div className="wrapper">

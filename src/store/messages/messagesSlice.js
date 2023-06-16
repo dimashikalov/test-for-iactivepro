@@ -48,14 +48,14 @@ const messagesSlice = createSlice({
         [message.payload.id]: message.payload,
       };
 
-      let ls = JSON.parse(localStorage.getItem("messages") || "[]");
-      if (ls.includes(message.payload.id)) {
-        ls = ls.filter((item) => item !== message.payload.id);
-      } else {
-        ls.push(message.payload.id);
-      }
+      // let ls = JSON.parse(localStorage.getItem("messages") || "[]");
+      // if (ls.find((item) => item.id === message.payload.id)) {
+      //   ls = ls.filter((item) => item.id !== message.payload.id);
+      // } else {
+      //   ls.push(message.payload);
+      // }
 
-      localStorage.setItem("messages", JSON.stringify(ls));
+      // localStorage.setItem("messages", JSON.stringify(ls));
     },
   },
 });
