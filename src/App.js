@@ -10,6 +10,7 @@ import {
 function App() {
   const dispatch = useDispatch();
   const { messages, isLoading, error } = useSelector((state) => state.messages);
+  const [selectSort, setSelectSort] = useState("sortDown");
 
   const messageTimeout = () => {
     let lastItem = Object.keys(messages)[Object.keys(messages).length - 1];
@@ -32,14 +33,42 @@ function App() {
     return () => clearInterval(interval);
   }, [messages]);
 
+  const [sortArray, setSortArray] = useState([]);
+
+  const handleSortArray = (type, messages) => {
+    if (type === "sortUp") {
+      setSortArray(Object.values(messages).toReversed());
+      console.log("sort1 ", sortArray);
+    }
+    if (type === "sortDown") {
+      setSortArray(Object.values(messages));
+      console.log("sort1222 ", sortArray);
+    }
+  };
+
+  useEffect(() => {
+    handleSortArray(selectSort, messages);
+  }, [selectSort, messages]);
+
   return (
     <div className="app">
+      <label>
+        {" "}
+        Показывать:
+        <select
+          className="select"
+          value={selectSort}
+          onChange={(e) => setSelectSort(e.target.value)}
+        >
+          <option value="sortDown">Сначала старые</option>
+          <option value="sortUp">Сначала новые</option>
+        </select>
+      </label>
       {isLoading && <h1>Идет загрузка...</h1>}
       {error && <h1>Произошла ошибка загрузки данных...</h1>}
-      {messages &&
-        Object.values(messages).map((item) => (
-          <NewsItem message={item} key={item.id} />
-        ))}
+      {sortArray.map((item) => (
+        <NewsItem message={item} key={item.id} />
+      ))}
     </div>
   );
 }
