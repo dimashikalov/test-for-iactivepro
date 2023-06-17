@@ -48,7 +48,7 @@ export const NewsItem = ({ message }) => {
 
   useEffect(() => {
     let ls = JSON.parse(localStorage.getItem("messages"));
-    if (ls.length > 0) {
+    if (ls) {
       if (ls.find((item) => item.id === message.id)) {
         let changeMessage = { ...message, like: true };
         dispatch(messageToggleLike(changeMessage));
