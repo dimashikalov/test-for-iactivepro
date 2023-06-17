@@ -47,15 +47,6 @@ const messagesSlice = createSlice({
         ...state.messages,
         [message.payload.id]: message.payload,
       };
-
-      // let ls = JSON.parse(localStorage.getItem("messages") || "[]");
-      // if (ls.find((item) => item.id === message.payload.id)) {
-      //   ls = ls.filter((item) => item.id !== message.payload.id);
-      // } else {
-      //   ls.push(message.payload);
-      // }
-
-      // localStorage.setItem("messages", JSON.stringify(ls));
     },
   },
 });
