@@ -36,25 +36,25 @@ export const NewsItem = ({ message }) => {
   const handleFavoritesClick = () => {
     const changeMessage = { ...message, like: !message.like };
     dispatch(messageToggleLike(changeMessage));
-    let ls = JSON.parse(localStorage.getItem("messages") || "[]");
-    if (ls.find((item) => item.id === changeMessage.id)) {
-      ls = ls.filter((item) => item.id !== changeMessage.id);
-    } else {
-      ls.push(changeMessage);
-    }
-
-    localStorage.setItem("messages", JSON.stringify(ls));
+    let ls = JSON.parse(localStorage.getItem("messages"));
+    // if (ls.find((item) => item.id === changeMessage.id)) {
+    //   ls = ls.filter((item) => item.id !== changeMessage.id);
+    // } else {
+    //   ls.push(changeMessage);
+    // }
+    console.log("ls", ls);
+    // localStorage.setItem("messages", JSON.stringify(ls));
   };
 
-  useEffect(() => {
-    let ls = JSON.parse(localStorage.getItem("messages"));
-    if (ls) {
-      if (ls.find((item) => item.id === message.id)) {
-        let changeMessage = { ...message, like: true };
-        dispatch(messageToggleLike(changeMessage));
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   let ls = JSON.parse(localStorage.getItem("messages"));
+  //   if (ls) {
+  //     if (ls.find((item) => item.id === message.id)) {
+  //       let changeMessage = { ...message, like: true };
+  //       dispatch(messageToggleLike(changeMessage));
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div className="wrapper">

@@ -1,17 +1,19 @@
 import { NewsItem } from "./components/newsItem/NewsItem";
 import "./app.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   fetchAllMessage,
   fetchNewMessage,
 } from "./store/messages/messagesActionCreators";
+import { messagesFetchingSuccess } from "./store/messages/messagesSlice";
 
 function App() {
   const dispatch = useDispatch();
   const { messages, isLoading, error } = useSelector((state) => state.messages);
   const [selectSort, setSelectSort] = useState("sortDown");
   const favorites = JSON.parse(localStorage.getItem("messages"));
+  const [sortArray, setSortArray] = useState([]);
 
   const messageTimeout = () => {
     let lastItem = Object.keys(messages)[Object.keys(messages).length - 1];
@@ -20,8 +22,18 @@ function App() {
     }
   };
 
+  const getMessageFromLocalStorageOrServer = () => {
+    if (!favorites) {
+      dispatch(fetchAllMessage());
+    } else {
+      let lsData = JSON.parse(localStorage.getItem("messages"));
+      console.log("data", lsData);
+      dispatch(messagesFetchingSuccess(lsData));
+    }
+  };
+
   useEffect(() => {
-    dispatch(fetchAllMessage());
+    getMessageFromLocalStorageOrServer();
   }, []);
 
   useEffect(() => {
@@ -31,8 +43,6 @@ function App() {
 
     return () => clearInterval(interval);
   }, [messages]);
-
-  const [sortArray, setSortArray] = useState([]);
 
   const handleSortArray = (type, messages) => {
     if (type === "sortUp") {

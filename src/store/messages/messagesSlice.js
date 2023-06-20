@@ -19,12 +19,7 @@ const messagesSlice = createSlice({
       state.error = "";
       state.messages = action.payload;
 
-      for (let item of Object.values(state.messages)) {
-        state.messages = {
-          ...state.messages,
-          [item.id]: { ...item, like: false },
-        };
-      }
+      localStorage.setItem("messages", JSON.stringify(state.messages));
     },
     messagesFetchingError(state, action) {
       state.isLoading = false;
@@ -39,6 +34,7 @@ const messagesSlice = createSlice({
           [item.id]: { ...item, like: false },
         };
       }
+      localStorage.setItem("messages", JSON.stringify(state.messages));
     },
 
     messageToggleLike(state, action) {
@@ -47,6 +43,7 @@ const messagesSlice = createSlice({
         ...state.messages,
         [message.payload.id]: message.payload,
       };
+      localStorage.setItem("messages", JSON.stringify(state.messages));
     },
   },
 });

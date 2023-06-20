@@ -21,7 +21,7 @@ export const fetchAllMessage = () => async (dispatch) => {
     });
 
     const messages = responce.data.Messages.reduce((acc, el) => {
-      acc[el.id] = el;
+      acc[el.id] = { ...el, like: false };
       return acc;
     }, {});
     dispatch(messagesFetchingSuccess(messages));
